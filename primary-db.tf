@@ -62,6 +62,11 @@ sudo systemctl restart postgresql
 
 # Print message indicating installation is complete
 echo "PostgreSQL 14 has been installed and initialized with pgbench schema."
+#Install Monitoring OpsAgent
+:> agents_to_install.csv && \
+echo '"projects/dbre-home-assignment/zones/us-central1-a/instances/primary-db","[{""type"":""ops-agent""}]"' >> agents_to_install.csv && \
+curl -sSO https://dl.google.com/cloudagents/mass-provision-google-cloud-ops-agents.py && \
+python3 mass-provision-google-cloud-ops-agents.py --file agents_to_install.csv
 SCRIPT
 
   lifecycle {
