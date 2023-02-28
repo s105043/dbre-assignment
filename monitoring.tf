@@ -7,7 +7,7 @@ resource "google_monitoring_alert_policy" "primary_db_alert_policy" {
       filter     = "metric.type=\"compute.googleapis.com/instance/disk/write_bytes_count\" AND resource.type=\"gce_instance\" AND resource.label.\"instance_id\"=\"${google_compute_instance.primary_db.id}\""
       duration   = "60s"
       comparison = "COMPARISON_GT"
-      threshold_value = 5
+      threshold_value = 85
       aggregations {
         alignment_period   = "60s"
         per_series_aligner = "ALIGN_RATE"
@@ -21,7 +21,7 @@ resource "google_monitoring_alert_policy" "primary_db_alert_policy" {
       filter            = "metric.type=\"compute.googleapis.com/instance/cpu/usage_time\" AND resource.type=\"gce_instance\" AND resource.label.\"instance_id\"=\"${google_compute_instance.primary_db.id}\""
       duration          = "60s"
       comparison        = "COMPARISON_GT"
-      threshold_value = 5
+      threshold_value = 90
       aggregations {
         alignment_period   = "60s"
         per_series_aligner = "ALIGN_RATE"
